@@ -1,0 +1,3 @@
+C = BA, ST = RS, O = Elektrotehnicki fakultet, OU = CA_AleksandarKelec, CN = s17, emailAddress = s17
+error 20 at 0 depth lookup: unable to get local issuer certificate
+error clientcert9.crt: verification failed

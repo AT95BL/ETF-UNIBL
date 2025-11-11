@@ -63,13 +63,13 @@ done
 # 3
 echo "testna datoteka1" > test1
 echo "testna datoteka2" > test2
-openssl dgst -sha1 -out otisak1 test1
+openssl dgst -sha1 -out otisak1 test1                                                       #   openssl dgst –sha1 –out izlaz.txt ulaz.txt
 cat otisak1
 openssl dgst -sha1 -out otisak2 test2
 cat otisak2
 
 # 4
-openssl dsaparam -out dsaparam2048.pem 2048
+openssl dsaparam -out dsaparam2048.pem 2048                                                 #   openssl dsaparam –out dsaparam.pem 2048
 openssl dsaparam -out dsaparam4096.pem 4096
 openssl dsaparam -in dsaparam2048.pem -out dsaparam2048.der -inform PEM -outform DER
 openssl dsaparam -in dsaparam4096.pem -out dsaparam4096.der -inform PEM -outform DER
@@ -77,7 +77,7 @@ openssl dsaparam -in dsaparam2048.pem -noout -text
 openssl dsaparam -in dsaparam4096.pem -noout -text
 
 # 5
-openssl gendsa -out dsa-private2048.pem dsaparam2048.pem
+openssl gendsa -out dsa-private2048.pem dsaparam2048.pem                                    #   openssl gendsa –out dsa-private.pem dsaparam.pem    
 openssl gendsa -out dsa-private4096.pem -des3 dsaparam4096.pem
 openssl dsa -in dsa-private2048.pem -out dsa-private4096.der -inform PEM -outform DER
 openssl dsa -in dsa-private4096.pem -out dsa-private4096.der -inform PEM -outform DER

@@ -1,39 +1,31 @@
 #!/bin/bash
 
-otisci=`cat otisci.dec`
-ulazi="ulaz*"
+# Učitava sve heširane otiske iz datoteke 'otisci.dec' u promenljivu 'otisci'.
+# Zbog Word Splittinga, ova promenljiva će se u petlji automatski podeliti na pojedinačne heš stringove.
+otisci=$(cat "otisci.dec")
+ulazi="ulaz*.txt"
 
-for otisak in $otisci
-do
-    algoritam=`echo "$otisak" | cut -d '$' -f 2`
-    salt=`echo "$otisak" | cut -d '$' -f 3`
+# Preimenovana varijabla: "otisak" je sada "hash1" da bi se naglasilo da sadrži heš string.
+for hash1 in $otisci; do
     
-    for ulaz in $ulazi
-    do
-        sadrzaj=`cat "$ulaz"`
-        otisak2=`openssl passwd -$algoritam -salt "$salt" "$sadrzaj" 2>error1.txt`
-        #echo -e "Otisak1: $otisak"
-        #echo -e "otisak2: $otisak2"
-        if [[ "$otisak" == "$otisak2" ]]
-            then
-                echo -e "Datoteka: $ulaz"
-                echo -e "Algoritam: $algoritam"
-                #echo -e "Otisak: $otisak"
-                break
+    # ISPRAVLJENO: Uklonjen je pogrešan poziv 'hash1=$(cat "$otisak")'.
+    # Varijabla $hash1 već sadrži heš string (npr. "$apr1$salt$hash_value").
+
+    # Izvlačenje algoritma i salta direktno iz heš stringa ($hash1).
+    algoritam=$(echo "$hash1" | cut -d '$' -f 2)
+    salt=$(echo "$hash1" | cut -d '$' -f 3)
+    
+    for ulaz in $ulazi; do
+        sadrzaj=$(cat "$ulaz")
+        
+        # Generisanje uporednog heša (hash2). Prebačeno na bolju $(...) sintaksu.
+        hash2=$(openssl passwd -"$algoritam" -salt "$salt" "$sadrzaj" 2>error1.txt)
+        
+        if [ "$hash1" == "$hash2" ]; then
+            echo -e "Algoritam: $algoritam"
+            echo -e "Otisak: $hash1"  # Ispisujemo sam heš string
+            echo -e "Ulaz: $ulaz" 
+            break 
         fi
     done
 done
-
-#Datoteka: ulaz14.txt
-#Algoritam: 1
-
-#Datoteka: ulaz22.txt
-#Algoritam: 5
-
-#Datoteka: ulaz40.txt
-#Algoritam: apr1
-
-#Datoteka: ulaz41.txt
-#Algoritam: 6
-
-        

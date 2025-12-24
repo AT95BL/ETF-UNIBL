@@ -7,7 +7,7 @@ This repository serves as a comprehensive collection of my personal study notes,
 The archive is organized into specialized directories for various engineering disciplines:
 
 **Mathematics & Theory:** Discrete Mathematics, Mathematical Analysis IV, Cryptography, and Data Security.
-**Physics & Electronics:** Physics (OET1 & OET2), Basic Electronics, and Electrical Circuits.
+**Physics & Electronics:** Physics (Kinematics, Dynamics, Thermodynamics and Optics),Electrostatic and Electromagnetic Fields Notes, Basic Electronics, and Electrical Circuits.
 **Systems & Performance:** Operating Systems Theory, Performance of Computer Systems, and Signals & Systems.
 **Languages:** Technical English for Engineers.
 

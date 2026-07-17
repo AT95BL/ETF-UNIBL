@@ -38,7 +38,5 @@ do
     
 done
 
-#DANAS JE ISPIT IZ KRIPTOGRAFIJE
-
-
-
+# Rješenje:
+# DANAS JE ISPIT IZ KRIPTOGRAFIJE
